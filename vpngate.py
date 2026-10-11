@@ -41,7 +41,10 @@ VPNGATE_MIRROR = os.environ.get(
     "VPNGATE_MIRROR",
     "https://raw.githubusercontent.com/fdciabdul/Vpngate-Scraper-API/main/json/data.json",
 )
-WORKER_CHECK_URL = os.environ.get("CHECK_WORKER", "https://你的域名/check?sstp=vpn:vpn@")
+
+# 【修改1】你的专属测速 Worker 接口地址 (替换为你的域名)
+WORKER_CHECK_URL = os.environ.get("CHECK_WORKER", "https://cdn.336265.xyz/check?sstp=vpn:vpn@")
+
 CONCURRENCY = max(1, int(os.environ.get("CHECK_CONCURRENCY", "32")))
 CHECK_TIMEOUT = float(os.environ.get("CHECK_TIMEOUT", "90"))
 MAX_CHECK_NODES = int(os.environ.get("MAX_CHECK_NODES", "0"))
@@ -80,23 +83,23 @@ COUNTRY_ZH = {
     "MN": "蒙古", "NP": "尼泊尔", "LK": "斯里兰卡", "MM": "缅甸",
 }
 
-# 静态优选域名池
+# 【修改2】静态优选域名池 (仅保留你专属的 SaaS 域名)
 EDGE_HOSTS = [
     h.strip()
     for h in os.environ.get(
         "EDGE_HOSTS",
-        "saas.sin.fan:443,cdn.204910.best:443,cf.877774.xyz:443",
+        "cdn.336265.xyz:443",
     ).split(",")
     if h.strip()
 ]
 
-# 优选 API 地址配置 (支持逗号分隔多个，包含电信、联通、移动测速接口)
+# 【修改3】优选 API 地址配置 (电信 ct + 移动 cmcc)
 OPTIMAL_API = os.environ.get(
     "OPTIMAL_API", 
-    "https://cf.090227.xyz/ct?ips=6&port=443,https://cf.090227.xyz/cu?port=443,https://cf.090227.xyz/cmcc?ips=8&port=443"
+    "https://cf.090227.xyz/ct?ips=6&port=443,https://cf.090227.xyz/cmcc?ips=8&port=443"
 )
 
-# 节点文件输出地址
+# 【修改4】节点文件输出地址 (你的 GitHub Pages 链接)
 NODES_URL = os.environ.get("NODES_URL", "https://fengchuiyanxue.github.io/gate/nodes.txt")
 
 # ---------------------------------------------------------------------------
